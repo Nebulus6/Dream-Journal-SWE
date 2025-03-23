@@ -5,20 +5,20 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-content">
-        {/* 🔹 Left Side: Logo */}
+        {/* Left Side: Logo */}
         <img src="/assets/images/Nebulous_logo.png" alt="Nebulous Logo" className="logo" />
 
-        {/* 🔹 Centered Navigation Links */}
+        {/* Centered Navigation Links */}
         <div className="nav-links">
           <Link to="/">Home</Link>
           <Link to="/my-dreams">My Dreams</Link>
           <Link to="/new-dream">New Dream</Link>
         </div>
 
-        {/* 🔹 Right Side: Buttons */}
+        {/* Right Side: Buttons */}
         <div className="auth-buttons">
-          <button className="login-btn">Log in</button>
-          <button className="signup-btn">Sign Up</button>
+          <Link to="/login" className="login-btn">Log in</Link>
+          <Link to="/login" className="signup-btn">Sign up</Link>
         </div>
       </div>
     </nav>

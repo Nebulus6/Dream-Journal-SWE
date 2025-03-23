@@ -43,26 +43,41 @@
   color: #666;
 }
 
+.auth-buttons a {
+  text-decoration: none;
+}
+
 .auth-buttons {
   display: flex;
   gap: 10px;
 }
 
-.login-btn,
-.signup-btn {
+/* Login Button */
+.login-btn {
   background-color: black;
   color: white;
   border: none;
-  padding: 8px 16px;
+  padding: 10px 20px;
   font-size: 0.9rem;
   border-radius: 5px;
   cursor: pointer;
+  text-align: center;
 }
 
+.login-btn:hover {
+  background-color: #333;
+}
+
+/* Sign Up Button */
 .signup-btn {
   background-color: white;
   color: black;
   border: 1px solid black;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
 }
 
 .signup-btn:hover {
