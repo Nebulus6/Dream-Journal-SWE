@@ -1,7 +1,5 @@
 .home-container {
-    /*background: url("/assets/images/pink_clouds.jpg") no-repeat center center;
-    background-size: cover;*/
-    height: 100vh; /* Ensures full-screen background */
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,12 +30,12 @@
     background-color: black;
     color: white;
     padding: 12px 24px; /* Increase padding for better size */
-    font-size: 1.1rem; /* Make text slightly larger */
+    font-size: 1.1rem; /* Makes text slightly larger */
     border-radius: 6px;
     cursor: pointer;
     border: none;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    display: inline-block; /* Ensure proper spacing */
+    display: inline-block; /* For proper spacing */
     text-align: center;
     margin-top: 20px;
   }
