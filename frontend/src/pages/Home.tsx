@@ -1,4 +1,5 @@
 import "../styles/home.css";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -9,7 +10,9 @@ function Home() {
           A platform for recording and exploring your dreams. Log your experiences, 
           connect with others, and uncover patterns in your subconscious.
         </p>
-        <button className="start-button">Get Started</button>
+          <Link to="/login" className="btn start-button">
+            Get Started
+          </Link>
       </div>
       <img src="/assets/images/pink_clouds.jpg" alt="Dreamy Clouds" className="hero-image" />
     </div>
