@@ -7,14 +7,14 @@ body {
   }
   
   /* Wrapper and container */
-  .signup-wrapper {
+  .login-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
   }
   
-  .signup-container {
+  .login-container {
     display: flex;
     background-color: white;
     border: 1px solid #ccc;
