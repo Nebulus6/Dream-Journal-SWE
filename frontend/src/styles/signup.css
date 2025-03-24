@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100vh; /* the full hieght of the screen*/
   }
   
   .signup-container {
@@ -19,15 +19,15 @@ body {
     border: 1px solid #ccc;
     width: 80%;
     max-width: 1000px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* drop shadow*/
     min-height: 700px;
   }
   
   /* Left panel */
   .left-panel {
-    flex: 1;
+    flex: 1;/* half the width of the login container shares space equally with other panel */
     padding: 40px;
-    background: linear-gradient(135deg, #6e1b9b, #9c27b0);
+    background: linear-gradient(135deg, #6e1b9b, #9c27b0);/* gradiant over the image */
     color: white;
     display: flex;
     flex-direction: column;
@@ -36,16 +36,17 @@ body {
     background-blend-mode: multiply;
   }
   
+  /* handles text in left panel spacing and font size */
   .left-panel h1 {
     font-size: 32px;
     margin-bottom: 20px;
   }
-  
   .left-panel p {
     font-size: 16px;
     line-height: 1.6;
   }
   
+
   /* Right panel */
   .right-panel {
     flex: 1;
@@ -53,7 +54,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    position: relative;
+    position: relative; /* to position it reletive to center including aleardy have an account text*/
     justify-content: center;
   }
   
@@ -70,6 +71,7 @@ body {
     flex-direction: column;
     justify-content: space-between;  space between top and bottom 
   } 
+    this was removed to include the position of the aleardy have an account text
   */
   
   .form-wrapper {
@@ -77,6 +79,7 @@ body {
     max-width: 100%;
   }
   
+  /*aleardy have an account text*/
   .bottom-text {
     position: absolute;
     bottom: 20px;
@@ -85,6 +88,7 @@ body {
     color: #555;
   }
   
+  /*log in text with link*/
   .bottom-text a {
     color: #5e0b63;
     text-decoration: none;

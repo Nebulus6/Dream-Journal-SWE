@@ -11,8 +11,8 @@ const Login = () => {
       }}
     >
       <div className="login-container">
-        <div
-          className="left-panel"
+        
+        <div className="left-panel"
           style={{
             backgroundImage: "url('/assets/images/dream-art.png')",
             backgroundSize: "cover",
@@ -26,6 +26,7 @@ const Login = () => {
             world of the subconscious — you can do it all in Nebulous.
           </p>
         </div>
+        
         <div className="right-panel">
           <h2>Log In</h2>
           <form>

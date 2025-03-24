@@ -2,8 +2,6 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    /*background: url('/assets/images/background-clouds.jpg') no-repeat center center fixed;*/
-    /* removed this because it should be in the tsx instead*/
     background-size: cover;
   }
   
@@ -34,7 +32,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /*background-image: url('/assets/images/dream-art.png');  removed and placed in tsx */
     background-size: cover;
     background-blend-mode: multiply;
   }
@@ -91,31 +88,5 @@ body {
   
   .submit-btn:hover {
     background-color: #4a094e;
-  }
-  
-  /* Google button */
-  .google-btn {
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 12px;
-    border: 1px solid #ccc;
-    background: white;
-    width: auto;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .google-btn img {
-    width: 28px;
-    height: auto;
-  }
-  
-  /* Separator text */
-  .separator {
-    text-align: center;
-    margin: 15px 0;
-    font-size: 14px;
-    color: #666;
   }
   

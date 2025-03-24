@@ -11,8 +11,8 @@ const Signup = () => {
       }}
     >
       <div className="signup-container">
-        <div
-          className="left-panel"
+       
+       <div className="left-panel"
           style={{
             backgroundImage: "url('/assets/images/dream-art.png')",
             backgroundSize: "cover",
@@ -26,6 +26,7 @@ const Signup = () => {
             world of the subconscious — you can do it all in Nebulous.
           </p>
         </div>
+        
         <div className="right-panel">
           <div className="form-wrapper">
             <h2>Sign Up</h2>
