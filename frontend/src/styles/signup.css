@@ -154,3 +154,49 @@ body {
   }
 
   
+
+  /* elements for password requirements */ 
+  .password-input-container {
+    position: relative;
+    /* Remove hard margin-bottom */
+    margin-bottom: 0;
+  }
+  
+  .requirements-box {
+    position: absolute;
+    top: 70%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    font-size: 14px;
+    z-index: 10;
+  }
+  
+  .requirements-box h4 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: #555;
+    text-transform: uppercase;
+  }
+  
+  .requirements-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .requirements-box li {
+    margin-bottom: 6px;
+    color: #888;
+  }
+  
+  .requirements-box li.valid {
+    color: green;
+    font-weight: bold;
+  }
+  
+  
