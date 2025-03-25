@@ -164,8 +164,9 @@ body {
   
   .requirements-box {
     position: absolute;
-    top: 70%;
-    left: 0;
+    top: 60%; /* move it fully below input */
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
     background: #fff;
     border: 1px solid #ddd;
@@ -174,6 +175,7 @@ body {
     padding: 12px;
     font-size: 14px;
     z-index: 10;
+    text-align: left; /* ensures the text is left-aligned */
   }
   
   .requirements-box h4 {
