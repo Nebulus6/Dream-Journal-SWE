@@ -10,18 +10,20 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* the full hieght of the screen*/
+    min-height: 100vh;
+    padding: 20px 0;
   }
 
   .login-container {
     display: flex;
     background-color: white;
-    border: 1px solid #ccc;
-    width: 80%;
+    border-radius: 20px;
+    width: auto;
     max-width: 1000px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* drop shadow*/
-    min-height: 700px;
+    min-height: 70vh;
     margin-top: 100px;
+
   }
 
   /* Left panel */
@@ -35,6 +37,8 @@ body {
     justify-content: center;
     background-size: cover;
     background-blend-mode: multiply;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
 
   /* handles text in left panel spacing and font size */
@@ -62,6 +66,7 @@ body {
     width: 100%;
     margin: 0 auto; /* added to fix center align Log in text */
     text-align: center;
+    margin-bottom: 2vh;
   }
 
   /* Form inputs these are the email and password fields*/
@@ -91,3 +96,22 @@ body {
     background-color: #4a094e;
   }
 
+  /*aleardy have an account text*/
+  .bottom-text {
+    position: reletive;
+    bottom: 20px;
+    left: 40px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  /*log in text with link*/
+  .bottom-text a {
+    color: #5e0b63;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .bottom-text a:hover {
+    text-decoration: underline;
+  }

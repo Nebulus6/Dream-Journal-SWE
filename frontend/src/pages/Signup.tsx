@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig';
+import { useNavigate } from 'react-router-dom';
 
 
 const Signup = () => {
@@ -12,6 +13,7 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showRequirements, setShowRequirements] = useState(false);
   const [showConfirmCheck, setShowConfirmCheck] = useState(false);
+  const navigate = useNavigate();
 
 
   const checks = {
@@ -53,6 +55,7 @@ const Signup = () => {
       });
 
       alert("Account created successfully!");
+      navigate('/my-Dreams');
     } catch (error: any) {
       alert("Signup failed: " + error.message);
     }
