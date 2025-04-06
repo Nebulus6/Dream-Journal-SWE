@@ -10,17 +10,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* the full hieght of the screen*/
+    min-height: 100vh;
+    padding: 5px 0;
   }
   
   .signup-container {
     display: flex;
     background-color: white;
-    border: 1px solid #ccc;
-    width: 80%;
+    border-radius: 20px;
+    width: auto;
     max-width: 1000px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* drop shadow*/
-    min-height: 700px;
+    min-height: 70vh;
+    margin-top: 100px;
   }
   
   /* Left panel */
@@ -62,6 +64,7 @@ body {
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
+    margin-bottom: 2vh;
   }
 
   /* .right-panel {
