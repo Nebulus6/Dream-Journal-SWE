@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { onAuthStateChanged, signOut, User } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import "../styles/navbar.css";
@@ -10,12 +10,28 @@ function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
 
+  const menuRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setShowDropdown(false); // 🛠 Close dropdown on auth change
     });
 
     return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const handleLogout = async () => {
@@ -43,8 +59,8 @@ function Navbar() {
           {user ? (
             <div
               className="user-menu"
-              onMouseEnter={() => setShowDropdown(true)}
-              onMouseLeave={() => setShowDropdown(false)}
+              ref={menuRef}
+              onClick={() => setShowDropdown((prev) => !prev)}
             >
               <img
                 src="/assets/images/user_icon.png"

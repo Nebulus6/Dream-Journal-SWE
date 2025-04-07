@@ -1,6 +1,7 @@
 import '../styles/login.css';
 import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,6 +21,18 @@ const Login = () => {
       navigate('/my-Dreams'); // change this to your post-login route
     } catch (error: any) {
       alert('Login failed: ' + error.message);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      alert(`Welcome back, ${user.displayName || 'user'}!`);
+      navigate('/my-dreams');
+    } catch (error: any) {
+      alert('Google login failed: ' + error.message);
     }
   };
 
@@ -51,23 +64,30 @@ const Login = () => {
         <div className="right-panel">
           <h2>Log In</h2>
           <form onSubmit={handleLogin}>
-          <input
-              type="email"
-              placeholder="Email"
-              maxLength={30}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          <input
-              type="password"
-              placeholder="Password"
-              maxLength={30}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          <button type="submit" className="submit-btn">Log In</button>
+            <input
+                type="email"
+                placeholder="Email"
+                maxLength={30}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            <input
+                type="password"
+                placeholder="Password"
+                maxLength={30}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            <button type="submit" className="submit-btn">Log In</button>
+
+            <div className="separator">or log in with</div>
+            <div style={{ textAlign: 'center' }}>
+              <button type="button" className="google-btn" onClick={handleGoogleLogin}>
+                <img src="/assets/images/google-logo.png" alt="Google logo" />
+              </button>
+            </div>
           </form>
 
           <div className="bottom-text">
