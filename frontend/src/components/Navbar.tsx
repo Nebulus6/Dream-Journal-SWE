@@ -15,7 +15,7 @@ function Navbar() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setShowDropdown(false); // 🛠 Close dropdown on auth change
+      setShowDropdown(false); // Close dropdown on auth change
     });
 
     return () => unsubscribe();
