@@ -5,6 +5,9 @@ import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
+import { signInWithPopup } from 'firebase/auth';
+import { googleProvider } from '../firebaseConfig';
+
 
 const Signup = () => {
 
@@ -58,6 +61,25 @@ const Signup = () => {
       navigate('/my-Dreams');
     } catch (error: any) {
       alert("Signup failed: " + error.message);
+    }
+  };
+
+  const handleGoogleSignup = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+  
+      // Optionally add user to Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        username: user.displayName,
+        email: user.email,
+        createdAt: new Date().toISOString()
+      });
+  
+      alert("Signed up with Google successfully!");
+      navigate('/my-Dreams');
+    } catch (error: any) {
+      alert("Google sign-up failed: " + error.message);
     }
   };
 
@@ -157,13 +179,13 @@ const Signup = () => {
 
             <button type="submit" className="submit-btn">Sign Up</button>
               
-              <div className="separator">or sign up with</div>
+            <div className="separator">or sign up with</div>
               
-              <div style={{ textAlign: 'center' }}>
-                <button type="button" className="google-btn">
-                  <img src="/assets/images/google-logo.png" alt="Google logo" />
-                </button>
-              </div>
+            <div style={{ textAlign: 'center' }}>
+              <button type="button" className="google-btn" onClick={handleGoogleSignup}>
+                <img src="/assets/images/google-logo.png" alt="Google logo" />
+              </button>
+            </div>
             </form>
           </div>
           <div className="bottom-text">
