@@ -1,3 +1,6 @@
+import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { db } from "../firebaseConfig";
 import "../styles/newdream.css";
 import { useState } from "react";
 
@@ -7,7 +10,8 @@ const NewDream = () => {
   const [description, setDescription] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!title.trim() || !date.trim() || !description.trim()) {
@@ -15,12 +19,31 @@ const NewDream = () => {
       return;
     }
 
-    console.log("Dream submitted:", { title, date, description });
+    const auth = getAuth();
+    const user = auth.currentUser;
 
-    setSubmitted(true);
-    setTitle("");
-    setDate("");
-    setDescription("");
+    if (!user) {
+      alert("You must be logged in to submit a dream.");
+      return;
+    }
+
+    try {
+      const dreamsRef = collection(db, "dreams"); // stores in top-level 'dreams' collection
+      await addDoc(dreamsRef, {
+        uid: user.uid,
+        title,
+        date,
+        description,
+        timestamp: serverTimestamp(),
+      });
+
+      setSubmitted(true);
+      setTitle("");
+      setDate("");
+      setDescription("");
+    } catch (error: any) {
+      alert("Failed to submit dream: " + error.message);
+    }
   };
 
   const resetForm = () => {
