@@ -80,6 +80,18 @@ body {
     font-size: 14px;
   }
 
+  .forgot-password-text {
+    color: gray;
+    text-decoration: underline;
+    cursor: pointer;
+    padding-bottom: 15px;
+    font-size: 0.9rem;
+  }
+  
+  .forgot-password-text:hover {
+    color: #6b46c1; /* Tailwind's purple-700 */
+  }
+
   /* Submit button */
   .submit-btn {
     width: 100%;

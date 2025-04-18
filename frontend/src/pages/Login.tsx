@@ -80,6 +80,10 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+            <p className="forgot-password-text" onClick={() => navigate('/forgot-password')}>
+              Forgot password?
+            </p>
+
             <button type="submit" className="submit-btn">Log In</button>
 
             <div className="separator">or log in with</div>
