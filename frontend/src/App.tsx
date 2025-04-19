@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import MyDreams from "./pages/MyDreams";
 import NewDream from "./pages/NewDream";
+import ForgotLogin from './pages/ForgotLogin';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/my-dreams" element={<MyDreams />} />
         <Route path="/new-dream" element={<NewDream />} />
+        <Route path="/forgot-password" element={<ForgotLogin />}/>
       </Routes>
     </>
   );

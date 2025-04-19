@@ -17,6 +17,14 @@ const Login = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
+
+      //Two factor auth
+      if (!auth.currentUser?.emailVerified) {
+        alert("Please verify your email before continuing.");
+        await auth.signOut();
+        return;
+      }
+
       alert('Login successful!');
       navigate('/my-Dreams'); // change this to your post-login route
     } catch (error: any) {
@@ -80,6 +88,10 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+            <p className="forgot-password-text" onClick={() => navigate('/forgot-password')}>
+              Forgot password?
+            </p>
+
             <button type="submit" className="submit-btn">Log In</button>
 
             <div className="separator">or log in with</div>
