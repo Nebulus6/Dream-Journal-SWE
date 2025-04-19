@@ -17,6 +17,14 @@ const Login = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
+
+      //Two factor auth
+      if (!auth.currentUser?.emailVerified) {
+        alert("Please verify your email before continuing.");
+        await auth.signOut();
+        return;
+      }
+
       alert('Login successful!');
       navigate('/my-Dreams'); // change this to your post-login route
     } catch (error: any) {

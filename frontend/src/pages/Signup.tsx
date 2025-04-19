@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig';
 import { useNavigate } from 'react-router-dom';
-
+import { sendEmailVerification } from 'firebase/auth';
 import { signInWithPopup } from 'firebase/auth';
 import { googleProvider } from '../firebaseConfig';
 
@@ -57,8 +57,11 @@ const Signup = () => {
         createdAt: new Date().toISOString(),
       });
 
-      alert("Account created successfully!");
-      navigate('/my-Dreams');
+      //two factor auth
+      await sendEmailVerification(userSignInfo.user);
+      alert("Account created! Please verify your email before logging in.");
+      await auth.signOut(); // sign them out right away
+      navigate('/login');   // redirect to login
     } catch (error: any) {
       alert("Signup failed: " + error.message);
     }
