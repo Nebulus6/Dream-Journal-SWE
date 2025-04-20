@@ -8,13 +8,13 @@ const NewDream = () => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
+  const [tag, setTag] = useState(""); // NEW TAG FIELD
   const [submitted, setSubmitted] = useState(false);
 
-  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!title.trim() || !date.trim() || !description.trim()) {
+    if (!title.trim() || !date.trim() || !description.trim() || !tag.trim()) {
       alert("Please fill out all fields before submitting.");
       return;
     }
@@ -28,12 +28,13 @@ const NewDream = () => {
     }
 
     try {
-      const dreamsRef = collection(db, "dreams"); // stores in top-level 'dreams' collection
+      const dreamsRef = collection(db, "dreams");
       await addDoc(dreamsRef, {
         uid: user.uid,
         title,
         date,
         description,
+        tag, // store tag
         timestamp: serverTimestamp(),
       });
 
@@ -41,6 +42,7 @@ const NewDream = () => {
       setTitle("");
       setDate("");
       setDescription("");
+      setTag(""); // reset tag
     } catch (error: any) {
       alert("Failed to submit dream: " + error.message);
     }
@@ -78,6 +80,15 @@ const NewDream = () => {
                 className="form-input"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
+              />
+
+              <input
+                type="text"
+                placeholder="Tag (e.g. nightmare, lucid, recurring)"
+                maxLength={30}
+                className="form-input"
+                value={tag}
+                onChange={(e) => setTag(e.target.value)}
               />
 
               <textarea
