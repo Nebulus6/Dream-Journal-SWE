@@ -65,13 +65,19 @@ const NewDream = () => {
                 onChange={(e) => setDescription(e.target.value)}
               />
 
+
+              <img
+                src="/assets/images/Audio.png"
+                className="audio-button"
+              />
+
               <button type="submit" className="submit-btn">Submit Dream</button>
             </form>
           ) : (
             <div className="submission-notification">
               <p>🌙 Your dream was submitted successfully!</p>
               <button className="submit-btn" onClick={resetForm}>Submit Another</button>
-              <button className="submit-btn" onClick={() => (window.location.href = "/dreams")}>
+              <button className="submit-btn" onClick={() => (window.location.href = "/my-dreams")}>
                 View All Dreams
               </button>
             </div>

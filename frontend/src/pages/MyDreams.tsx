@@ -1,5 +1,8 @@
+import { getFirestore } from 'firebase/firestore';
 import "../styles/mydreams.css";
 import { useEffect, useState } from "react";
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from "../firebaseConfig";
 
 type Dream = {
   title: string;
@@ -11,10 +14,21 @@ const MyDreams = () => {
   const [dreams, setDreams] = useState<Dream[]>([]);
 
   useEffect(() => {
-    const storedDreams = localStorage.getItem("dreams");
-    if (storedDreams) {
-      setDreams(JSON.parse(storedDreams));
-    }
+    const fetchDreams = async () => {
+        const querySnapshot = await getDocs(collection(db, "dreams"));
+
+        const dreamsFromFirestore = querySnapshot.docs.map((doc): Dream => ({
+          title: doc.data().title,
+          date: doc.data().date,
+          description: doc.data().description,
+        }));
+
+        setDreams(dreamsFromFirestore);
+
+
+    };
+
+    fetchDreams();
   }, []);
 
   return (
@@ -46,13 +60,18 @@ const MyDreams = () => {
               </button>
             </div>
           ) : (
+
             <div className="dream-list">
+
               {dreams.map((dream, index) => (
                 <div key={index} className="dream-card">
+
                   <h3>{dream.title}</h3>
                   <p className="dream-date">{dream.date}</p>
                   <p>{dream.description}</p>
+
                 </div>
+
               ))}
             </div>
           )}
