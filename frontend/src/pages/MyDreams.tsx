@@ -10,6 +10,7 @@ type Dream = {
   date: string;
   description: string;
   tag?: string;
+  audioURL?: string;
   timestamp?: {
     seconds: number;
     nanoseconds: number;
@@ -21,6 +22,7 @@ const MyDreams = () => {
   const [filteredDreams, setFilteredDreams] = useState<Dream[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedTag, setSelectedTag] = useState("All");
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchDreams = async () => {
@@ -58,12 +60,15 @@ const MyDreams = () => {
 
   const handleTagFilter = (tag: string) => {
     setSelectedTag(tag);
-    if (tag === "All") {
-      setFilteredDreams(dreams);
-    } else {
-      const filtered = dreams.filter((dream) => dream.tag?.toLowerCase() === tag.toLowerCase());
-      setFilteredDreams(filtered);
-    }
+    setFilteredDreams(
+      tag === "All"
+        ? dreams
+        : dreams.filter(d => d.tag?.toLowerCase() === tag.toLowerCase())
+    );
+  };
+
+  const toggleExpand = (id: string) => {
+    setExpandedId(prev => (prev === id ? null : id));
   };
 
   const uniqueTags = Array.from(new Set(dreams.map((d) => d.tag).filter(Boolean)));
@@ -73,14 +78,24 @@ const MyDreams = () => {
       className="dream-wrapper"
       style={{
         background: "url('/assets/images/background-clouds.jpg') no-repeat center center fixed",
-        backgroundSize: "cover"
+        backgroundSize: "cover",
+        height: "100vh",
+        overflow: "hidden"
       }}
     >
-      <div className="dream-container">
-        <div className="right-panel">
+      <div
+        className="dream-container"
+        style={{
+          overflowY: "auto",
+          maxHeight: "90vh",
+          padding: "1rem",
+          display: "flex",
+          justifyContent: "center"
+        }}
+      >
+        <div className="right-panel" style={{ maxWidth: "700px", width: "100%" }}>
           <h2>Your Submitted Dreams</h2>
 
-          {/* Tag Filter Dropdown */}
           {uniqueTags.length > 0 && (
             <div className="tag-filter">
               <label htmlFor="tag-select">Filter by Tag:</label>
@@ -92,9 +107,7 @@ const MyDreams = () => {
               >
                 <option value="All">All</option>
                 {uniqueTags.map((tag, i) => (
-                  <option key={i} value={tag}>
-                    {tag}
-                  </option>
+                  <option key={i} value={tag}>{tag}</option>
                 ))}
               </select>
             </div>
@@ -111,25 +124,48 @@ const MyDreams = () => {
               />
               <h3>No dreams yet...</h3>
               <p>Start by logging a dream and return here to reflect on them anytime.</p>
-              <button
-                className="submit-btn"
-                onClick={() => (window.location.href = "/new-dream")}
-              >
+              <button className="submit-btn" onClick={() => (window.location.href = "/new-dream")}>
                 Log Your First Dream
               </button>
             </div>
           ) : (
-            <div className="dream-list">
-              {filteredDreams.map((dream, index) => (
-                <div key={index} className="dream-card">
-                  <h3>{dream.title}</h3>
-                  <p className="dream-date">
-                    {dream.timestamp
+            <div className="dream-list" style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              {filteredDreams.map((dream) => (
+                <div
+                  key={dream.id}
+                  onClick={() => toggleExpand(dream.id)}
+                  className="dream-card"
+                  style={{
+                    backgroundColor: "#e6ddfb",
+                    borderRadius: "8px",
+                    padding: "1rem",
+                    cursor: "pointer",
+                    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+                    transition: "background 0.2s",
+                    border: expandedId === dream.id ? "2px solid #b598f0" : "2px solid transparent"
+                  }}
+                >
+                  <h3 style={{ margin: 0 }}>{dream.title}</h3>
+                  <p style={{ margin: "0.25rem 0 0.5rem", fontWeight: "500" }}>
+                    {dream.tag ?? "No tag"} — {dream.timestamp
                       ? new Date(dream.timestamp.seconds * 1000).toLocaleDateString()
                       : dream.date}
                   </p>
-                  <p><strong>Tag:</strong> {dream.tag ?? "No tag"}</p>
-                  <p>{dream.description}</p>
+
+                  {expandedId === dream.id && (
+                    <div style={{ marginTop: "0.5rem" }}>
+                      <p><strong>Description:</strong> {dream.description}</p>
+                      {dream.audioURL && (
+                        <div style={{ marginTop: "0.5rem" }}>
+                          <p><strong>Audio:</strong></p>
+                          <audio controls>
+                            <source src={dream.audioURL} type="audio/webm" />
+                            Your browser does not support the audio element.
+                          </audio>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
