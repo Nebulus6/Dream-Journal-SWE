@@ -83,6 +83,7 @@ const Profile = () => {
                     <p>No user is logged in.</p>
                 )}
             </div>
+
         </div>
     );
 
