@@ -13,7 +13,7 @@ const Profile = () => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             if (currentUser) {
                 await currentUser.reload(); // Refresh user info
-                setUser(auth.currentUser);  // Get latest info
+                setUser(auth.currentUser);
             } else {
                 setUser(null);
             }
@@ -33,11 +33,15 @@ const Profile = () => {
             await uploadBytes(storageRef, file);
             const url = await getDownloadURL(storageRef);
 
+            // Update the real Firebase Auth profile
             await updateProfile(auth.currentUser, { photoURL: url });
-            setUser({ ...auth.currentUser, photoURL: url });
+
+            // Refresh the user data and update state
+            await auth.currentUser.reload();
+            setUser(auth.currentUser);
         } catch (err) {
+            console.error("Upload failed", err);
             alert("Upload failed");
-            console.error(err);
         } finally {
             setUploading(false);
         }
@@ -81,7 +85,7 @@ const Profile = () => {
             </div>
         </div>
     );
-};
 
+};
 
 export default Profile;
