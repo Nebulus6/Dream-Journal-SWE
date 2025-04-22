@@ -129,3 +129,11 @@
 .dropdown-menu button:hover {
   background-color: #f0f0f0;
 }
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+  margin: 0 10px;
+  font-weight: normal;
+  cursor: pointer;
+}

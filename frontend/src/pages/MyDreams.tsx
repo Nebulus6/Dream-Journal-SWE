@@ -1,3 +1,4 @@
+import { getFirestore } from 'firebase/firestore';
 import "../styles/mydreams.css";
 import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";

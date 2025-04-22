@@ -44,7 +44,8 @@
 }
 
 .dream-card {
-  background-color: #f9f9f9;
+  color: #9226D4;
+  background-color: #DCA1F9;
   border: 1px solid #ddd;
   padding: 20px;
   border-radius: 12px;
@@ -52,7 +53,7 @@
 }
 
 .dream-card:hover {
-  background-color: #f1f1f1;
+  background-color: #EBC3FF;
 }
 
 .dream-card h3 {
@@ -62,7 +63,7 @@
 
 .dream-date {
   font-size: 14px;
-  color: #666;
+  color: #4C0279;
   margin-bottom: 10px;
 }
 

@@ -139,6 +139,12 @@ const NewDream = () => {
                 )}
               </div>
 
+
+              <img
+                src="/assets/images/Audio.png"
+                className="audio-button"
+              />
+
               <button type="submit" className="submit-btn">Submit Dream</button>
             </form>
           ) : (

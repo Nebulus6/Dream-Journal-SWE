@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 import { useEffect, useRef, useState } from "react";
 import { onAuthStateChanged, signOut, User } from "firebase/auth";
 import { auth } from "../firebaseConfig";
@@ -47,9 +48,32 @@ function Navbar() {
 
         {/* Centered Navigation Links */}
         <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/my-dreams">My Dreams</Link>
-          <Link to="/new-dream">New Dream</Link>
+          <NavLink to="/" className="nav-link" end>Home</NavLink>
+          {/* Changed to send user to login before mydreams and new dream pages accessed. */}
+          <NavLink
+            to="/my-dreams"
+            className="nav-link"
+            onClick={(e) => {
+              if (!user) {
+                e.preventDefault();
+                navigate('/login');
+              }
+            }}
+          >
+            My Dreams
+          </NavLink>
+          <NavLink
+            to="/new-dream"
+            className="nav-link"
+            onClick={(e) => {
+              if (!user) {
+                e.preventDefault();
+                navigate('/login');
+              }
+            }}
+          >
+            New Dream
+          </NavLink>
         </div>
 
         {/* Right Side: Buttons */}
