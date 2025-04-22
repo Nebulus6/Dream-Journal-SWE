@@ -124,9 +124,9 @@ const NewDream = () => {
 
               <div className="audio-recorder" style={{ marginBottom: "1rem" }}>
                 {!recording ? (
-                  <button type="button" className="submit-btn" onClick={handleStartRecording}>🎙️ Start Recording</button>
+                  <button type="button" className="submit-btn" onClick={handleStartRecording}>🟢 Start Recording</button>
                 ) : (
-                  <button type="button" className="submit-btn" onClick={handleStopRecording}>⏹️ Stop Recording</button>
+                  <button type="button" className="submit-btn" onClick={handleStopRecording}>🔴 Stop Recording</button>
                 )}
                 {audioBlob && (
                   <div style={{ marginTop: "0.5rem" }}>
@@ -138,12 +138,6 @@ const NewDream = () => {
                   </div>
                 )}
               </div>
-
-
-              <img
-                src="/assets/images/Audio.png"
-                className="audio-button"
-              />
 
               <button type="submit" className="submit-btn">Submit Dream</button>
             </form>
