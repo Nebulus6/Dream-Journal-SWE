@@ -44,7 +44,7 @@ const MyDreams = () => {
             id: doc.id,
             ...(doc.data() as Omit<Dream, "id">),
           }))
-          .sort((a, b) => (b.timestamp?.seconds ?? 0) - (a.timestamp?.seconds ?? 0));
+          .sort((a, b) => (new Date(b.date).getTime() - new Date(a.date).getTime()));
 
         setDreams(dreamData);
         setFilteredDreams(dreamData);
@@ -147,9 +147,11 @@ const MyDreams = () => {
                 >
                   <h3 style={{ margin: 0 }}>{dream.title}</h3>
                   <p style={{ margin: "0.25rem 0 0.5rem", fontWeight: "500" }}>
-                    {dream.tag ?? "No tag"} — {dream.timestamp
-                      ? new Date(dream.timestamp.seconds * 1000).toLocaleDateString()
-                      : dream.date}
+                    {dream.tag ?? "No tag"} — {new Date(dream.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric"
+                    })}
                   </p>
 
                   {expandedId === dream.id && (
