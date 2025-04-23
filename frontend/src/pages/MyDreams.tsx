@@ -2,6 +2,7 @@ import { getFirestore } from 'firebase/firestore';
 import "../styles/mydreams.css";
 import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
@@ -26,27 +27,27 @@ const MyDreams = () => {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchDreams = async () => {
-      const auth = getAuth();
-      const user = auth.currentUser;
-
+    const auth = getAuth();
+  
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (!user) {
         alert("You must be logged in to view your dreams.");
+        setLoading(false);
         return;
       }
-
+  
       try {
         const dreamsRef = collection(db, "dreams");
         const q = query(dreamsRef, where("uid", "==", user.uid));
         const snapshot = await getDocs(q);
-
+  
         const dreamData = snapshot.docs
           .map(doc => ({
             id: doc.id,
             ...(doc.data() as Omit<Dream, "id">),
           }))
           .sort((a, b) => (new Date(b.date).getTime() - new Date(a.date).getTime()));
-
+  
         setDreams(dreamData);
         setFilteredDreams(dreamData);
       } catch (error: any) {
@@ -54,10 +55,11 @@ const MyDreams = () => {
       } finally {
         setLoading(false);
       }
-    };
-
-    fetchDreams();
+    });
+  
+    return () => unsubscribe();
   }, []);
+  
 
   const handleTagFilter = (tag: string) => {
     setSelectedTag(tag);
