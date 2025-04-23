@@ -3,29 +3,44 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url('/assets/images/background-clouds.jpg') no-repeat center center fixed;
-    background-size: cover;
     font-family: 'Poppins', sans-serif;
-  }
-  
-  .profile-card {
+}
+
+.profile-card {
     background-color: white;
     padding: 30px 40px;
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     max-width: 400px;
     text-align: center;
-  }
-  
-  .profile-card h2 {
+}
+
+.profile-card h2 {
     margin-bottom: 20px;
     font-size: 24px;
     color: #5e0b63;
-  }
-  
-  .profile-card p {
+}
+
+.profile-card p {
     margin: 10px 0;
     font-size: 16px;
     color: #333;
-  }
-  
+}
+
+
+
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #5e0b63;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.upload-input {
+    margin: 10px 0 20px;
+    font-size: 14px;
+}
