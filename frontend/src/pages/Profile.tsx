@@ -4,7 +4,7 @@ import { auth, storage, db } from "../firebaseConfig";
 import { User, onAuthStateChanged, updateProfile } from "firebase/auth";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import dayjs from "dayjs";
+import dayjs from "dayjs"; // Do "npm install dayjs"
 
 const Profile = () => {
   const [user, setUser] = useState<User | null>(null);
