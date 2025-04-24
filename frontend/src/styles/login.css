@@ -1,0 +1,156 @@
+/* Background */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-size: cover;
+  }
+
+  /* Wrapper and container */
+  .login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px 0;
+  }
+
+  .login-container {
+    display: flex;
+    background-color: white;
+    border-radius: 20px;
+    width: auto;
+    max-width: 1000px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* drop shadow*/
+    min-height: 70vh;
+    margin-top: 100px;
+
+  }
+
+  /* Left panel */
+  .left-panel {
+    flex: 1; /* half the width of the login container shares space equally with other panel */
+    padding: 40px;
+    background: linear-gradient(135deg, #6e1b9b, #9c27b0); /* gradiant over the image */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-size: cover;
+    background-blend-mode: multiply;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+
+  /* handles text in left panel spacing and font size */
+  .left-panel h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  .left-panel p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+
+  /* Right panel */
+  .right-panel {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .right-panel h2 {
+    font-size: 24px;
+    width: 100%;
+    margin: 0 auto; /* added to fix center align Log in text */
+    text-align: center;
+    margin-bottom: 2vh;
+  }
+
+  /* Form inputs these are the email and password fields*/
+  form input {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 30px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    background-color: #f2f2f2;
+    font-size: 14px;
+  }
+
+  .forgot-password-text {
+    color: gray;
+    text-decoration: underline;
+    cursor: pointer;
+    padding-bottom: 15px;
+    font-size: 0.9rem;
+  }
+  
+  .forgot-password-text:hover {
+    color: #6b46c1; /* Tailwind's purple-700 */
+  }
+
+  /* Submit button */
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #5e0b63;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .submit-btn:hover {
+    background-color: #4a094e;
+  }
+
+  /* Google button */
+  .google-btn {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    background: white;
+    width: auto;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .google-btn img {
+    width: 28px;
+    height: auto;
+  }
+  
+  /* Separator text */
+  .separator {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 14px;
+    color: #666;
+  }
+
+  /*aleardy have an account text*/
+  .bottom-text {
+    position: reletive;
+    bottom: 20px;
+    left: 40px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  /*log in text with link*/
+  .bottom-text a {
+    color: #5e0b63;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .bottom-text a:hover {
+    text-decoration: underline;
+  }
